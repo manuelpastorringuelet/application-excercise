@@ -38,4 +38,11 @@ export const postsRouter = createTRPCRouter({
         },
       });
     }),
+  delete: publicProcedure.input(z.string()).mutation(({ ctx, input }) => {
+    return ctx.prisma.blogPost.delete({
+      where: {
+        id: input,
+      },
+    });
+  }),
 });
