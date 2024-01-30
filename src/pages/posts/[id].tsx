@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { useToast } from "~/components/ui/use-toast";
+
 import { api } from "~/utils/api";
 
 const BlogPostDetailPage = () => {
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const postId = router.query.id as string;
   const post = api.posts.getOne.useQuery(postId);
@@ -14,6 +18,14 @@ const BlogPostDetailPage = () => {
   const onDelete = () => {
     deletePost
       .mutateAsync(postId)
+      .then(() =>
+        toast({
+          variant: "destructive",
+          title: "Post deleted",
+          description: "Your post has been deleted successfully",
+          duration: 2000,
+        })
+      )
       .then(() => router.push("/"))
       .catch((error) => {
         console.error("Error deleting post:", error);

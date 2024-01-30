@@ -3,11 +3,15 @@ import type { SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import router from "next/router";
 
+import { useToast } from "~/components/ui/use-toast";
+
 import { newBlogPostSchema } from "~/utils/newBlogPostSchema";
 import type { NewBlogPostType } from "~/utils/newBlogPostSchema";
 import { api } from "~/utils/api";
 
 const NewBlogPost = () => {
+  const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -21,8 +25,14 @@ const NewBlogPost = () => {
   const onSubmit: SubmitHandler<NewBlogPostType> = (data) => {
     newPost
       .mutateAsync(data)
+      .then(() =>
+        toast({
+          title: "Post created",
+          description: "Your post has been created successfully",
+          duration: 2000,
+        })
+      )
       .then(() => router.push("/"))
-      .then(() => console.log("Post created and navigated to home"))
       .catch((error) =>
         console.error("Failed to create post or navigate:", error)
       );
