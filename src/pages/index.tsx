@@ -1,3 +1,4 @@
+import BlogPostCard from "~/components/BlogPostCard";
 import { api } from "~/utils/api";
 
 export default function Home() {
@@ -7,12 +8,7 @@ export default function Home() {
       {/* Display a list of all blog posts with their titles and creation dates. */}
       <ul className="space-y-1">
         {posts.data?.map((post) => (
-          <li key={post.id}>
-            <h2>{post.title}</h2>
-            <p className="text-sm text-slate-400">
-              {post.createdAt.toLocaleDateString()}
-            </p>
-          </li>
+          <BlogPostCard key={post.id} post={post}/>
         ))}
       </ul>
     </main>
