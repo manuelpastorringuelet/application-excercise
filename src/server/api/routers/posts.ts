@@ -14,4 +14,17 @@ export const postsRouter = createTRPCRouter({
       },
     });
   }),
+  getOne: publicProcedure.input(z.string()).query(({ ctx, input }) => {
+    return ctx.prisma.blogPost.findUnique({
+      where: {
+        id: input,
+      },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+      },
+    });
+  }),
 });
