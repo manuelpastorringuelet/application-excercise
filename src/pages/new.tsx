@@ -36,7 +36,7 @@ const NewBlogPost = () => {
         toast({
           title: "Post created",
           description: "Your post has been created successfully",
-          duration: 2000,
+          duration: 1500,
         })
       )
       .then(() => router.push("/"))
@@ -50,7 +50,7 @@ const NewBlogPost = () => {
       <form
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-2/3 max-w-2xl space-y-8"
+        className="w-2/3 max-w-xl space-y-4"
       >
         <FormField
           control={form.control}
@@ -79,7 +79,7 @@ const NewBlogPost = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
+        <Button type="submit" variant="default" className="w-full">
           Create
         </Button>
       </form>

@@ -5,7 +5,7 @@ import { cn } from "~/lib/utils";
 
 const Footer = () => {
   return (
-    <div className="flex items-center justify-center border-t bg-secondary p-2 text-sm">
+    <div className="flex items-center justify-center border-t bg-green-100 p-2 text-sm">
       Created by
       <Link
         className={cn(buttonVariants({ variant: "link" }), "pl-1")}
