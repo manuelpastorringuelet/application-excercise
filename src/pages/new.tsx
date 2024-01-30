@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import router from "next/router";
 
 import { newBlogPostSchema } from "~/utils/newBlogPostSchema";
 import type { NewBlogPostType } from "~/utils/newBlogPostSchema";
+import { api } from "~/utils/api";
 
 const NewBlogPost = () => {
   const {
@@ -14,7 +16,17 @@ const NewBlogPost = () => {
     resolver: zodResolver(newBlogPostSchema),
   });
 
-  const onSubmit: SubmitHandler<NewBlogPostType> = (data) => console.log(data);
+  const newPost = api.posts.create.useMutation();
+
+  const onSubmit: SubmitHandler<NewBlogPostType> = async (data) => {
+    try {
+      await newPost.mutateAsync(data);
+      await router.push("/");
+      console.log("Post created and navigated to home");
+    } catch (error) {
+      console.error("Failed to create post or navigate:", error);
+    }
+  };
 
   return (
     <div className="flex flex-1 items-center justify-center bg-slate-500">
