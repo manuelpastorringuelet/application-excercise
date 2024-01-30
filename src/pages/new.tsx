@@ -8,6 +8,7 @@ import { useToast } from "~/components/ui/use-toast";
 import { newBlogPostSchema } from "~/utils/newBlogPostSchema";
 import type { NewBlogPostType } from "~/utils/newBlogPostSchema";
 import { api } from "~/utils/api";
+import { Button } from "~/components/ui/button";
 
 const NewBlogPost = () => {
   const { toast } = useToast();
@@ -39,11 +40,11 @@ const NewBlogPost = () => {
   };
 
   return (
-    <div className="flex flex-1 items-center justify-center bg-slate-500">
+    <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <input className="p-2" placeholder="title" {...register("title")} />
         {errors.title && (
-          <span className="text-xs text-red-500">This field is required</span>
+          <span className="text-xs text-red-500">{errors.title.message}</span>
         )}
 
         <textarea
@@ -53,10 +54,10 @@ const NewBlogPost = () => {
           {...register("content")}
         />
         {errors.content && (
-          <span className="text-xs text-red-500">This field is required</span>
+          <span className="text-xs text-red-500">{errors.content.message}</span>
         )}
 
-        <input type="submit" />
+        <Button type="submit">Create</Button>
       </form>
     </div>
   );

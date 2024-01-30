@@ -14,7 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
 
       <Navbar />
-      {children}
+      <main className="flex flex-1 items-center justify-center p-4">
+        {children}
+      </main>
       <Footer />
 
       <Toaster />
