@@ -34,10 +34,10 @@ const BlogPostDetailPage = () => {
   };
 
   return (
-    <div className="flex min-w-[300px] flex-col gap-2">
+    <div className="flex min-w-[300px] max-w-2xl flex-col gap-2">
       <h1 className="text-2xl">{post.data?.title}</h1>
       <p className="text-xs">{post.data?.createdAt.toLocaleDateString()}</p>
-      <p className="max-w-2xl">{post.data?.content}</p>
+      <p>{post.data?.content}</p>
       <div className="mt-5 flex w-full max-w-2xl justify-between">
         <Link className={buttonVariants({ variant: "outline" })} href="/">
           Back

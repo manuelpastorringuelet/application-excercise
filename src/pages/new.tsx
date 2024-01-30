@@ -4,20 +4,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import router from "next/router";
 
 import { useToast } from "~/components/ui/use-toast";
+import { Button } from "~/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 
 import { newBlogPostSchema } from "~/utils/newBlogPostSchema";
 import type { NewBlogPostType } from "~/utils/newBlogPostSchema";
 import { api } from "~/utils/api";
-import { Button } from "~/components/ui/button";
+import { Textarea } from "~/components/ui/textarea";
 
 const NewBlogPost = () => {
   const { toast } = useToast();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<NewBlogPostType>({
+  const form = useForm<NewBlogPostType>({
     resolver: zodResolver(newBlogPostSchema),
   });
 
@@ -40,26 +46,44 @@ const NewBlogPost = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
-        <input className="p-2" placeholder="title" {...register("title")} />
-        {errors.title && (
-          <span className="text-xs text-red-500">{errors.title.message}</span>
-        )}
-
-        <textarea
-          className="p-2"
-          rows={10}
-          placeholder="content"
-          {...register("content")}
+    <Form {...form}>
+      <form
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="min-w-[300px] max-w-2xl space-y-8"
+      >
+        <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Title</FormLabel>
+              <FormControl>
+                <Input placeholder="Title" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.content && (
-          <span className="text-xs text-red-500">{errors.content.message}</span>
-        )}
 
-        <Button type="submit">Create</Button>
+        <FormField
+          control={form.control}
+          name="content"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Content</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Content" rows={10} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full">
+          Create
+        </Button>
       </form>
-    </div>
+    </Form>
   );
 };
 
