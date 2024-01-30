@@ -50,7 +50,7 @@ const NewBlogPost = () => {
       <form
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={form.handleSubmit(onSubmit)}
-        className="min-w-[300px] max-w-2xl space-y-8"
+        className="w-2/3 max-w-2xl space-y-8"
       >
         <FormField
           control={form.control}

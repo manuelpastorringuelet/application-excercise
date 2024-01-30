@@ -8,7 +8,7 @@ export const newBlogPostSchema = z.object({
   content: z
     .string()
     .min(20, "Content must be more than 20 characters")
-    .max(1000, "Content must be less than 1000 characters"),
+    .max(5000, "Content must be less than 5000 characters"),
 });
 
 export type NewBlogPostType = z.infer<typeof newBlogPostSchema>;
