@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+
 import { newBlogPostSchema } from "~/utils/newBlogPostSchema";
 
 export const postsRouter = createTRPCRouter({
@@ -15,8 +16,8 @@ export const postsRouter = createTRPCRouter({
       },
     });
   }),
-  getOne: publicProcedure.input(z.string()).query(({ ctx, input }) => {
-    return ctx.prisma.blogPost.findUnique({
+  getOneById: publicProcedure.input(z.string()).query(({ ctx, input }) => {
+    return ctx.prisma.blogPost.findUniqueOrThrow({
       where: {
         id: input,
       },

@@ -13,7 +13,7 @@ const BlogPostDetailPage = () => {
   const { toast } = useToast();
 
   const postId = router.query.id as string;
-  const post = api.posts.getOne.useQuery(postId);
+  const post = api.posts.getOneById.useQuery(postId);
 
   const deletePost = api.posts.delete.useMutation();
 

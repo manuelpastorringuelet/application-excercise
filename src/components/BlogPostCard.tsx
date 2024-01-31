@@ -13,7 +13,7 @@ interface PostCardProps {
 
 const PostCard = ({ post }: PostCardProps) => {
   return (
-    <li className="rounded-lg border-b border-gray-200 py-3 transition-all">
+    <li className="rounded-lg border-b border-gray-200 py-3">
       <Link
         className={buttonVariants({ variant: "link" })}
         href={`/posts/${post.id}`}
