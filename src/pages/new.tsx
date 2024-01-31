@@ -14,11 +14,11 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/textarea";
 
+import { api } from "~/utils/api";
 import { newBlogPostSchema } from "~/utils/newBlogPostSchema";
 import type { NewBlogPostType } from "~/utils/newBlogPostSchema";
-import { api } from "~/utils/api";
-import { Textarea } from "~/components/ui/textarea";
 
 const NewBlogPost = () => {
   const { toast } = useToast();

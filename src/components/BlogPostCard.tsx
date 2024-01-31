@@ -4,6 +4,7 @@ import type { BlogPost } from "@prisma/client";
 import { buttonVariants } from "./ui/button";
 
 import formatDate from "~/utils/formatDate";
+import { cn } from "~/lib/utils";
 
 type PostCardData = Pick<BlogPost, "id" | "createdAt" | "title">;
 
@@ -13,9 +14,9 @@ interface PostCardProps {
 
 const PostCard = ({ post }: PostCardProps) => {
   return (
-    <li className="rounded-lg border-b border-gray-200 py-3">
+    <li className="border-b border-gray-200 py-3">
       <Link
-        className={buttonVariants({ variant: "link" })}
+        className={cn(buttonVariants({ variant: "link" }), "px-0")}
         href={`/posts/${post.id}`}
       >
         <text>
