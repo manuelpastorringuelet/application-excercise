@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-
 import { Button, buttonVariants } from "~/components/ui/button";
 import { useToast } from "~/components/ui/use-toast";
 
@@ -46,7 +45,7 @@ const BlogPostDetailPage = () => {
   return (
     <div className="flex w-2/3 max-w-3xl flex-col gap-2">
       <h1 className="text-2xl">{post.data?.title}</h1>
-      <p className="text-xs text-slate-600">
+      <p className="text-xs font-normal text-slate-600">
         {formatDate(post.data.createdAt)}
       </p>
       <p className="whitespace-pre-wrap">{post.data?.content}</p>

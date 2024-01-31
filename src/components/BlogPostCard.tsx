@@ -1,6 +1,7 @@
 import Link from "next/link";
-
 import type { BlogPost } from "@prisma/client";
+
+import { buttonVariants } from "./ui/button";
 
 import formatDate from "~/utils/formatDate";
 
@@ -11,14 +12,15 @@ interface PostCardProps {
 }
 
 const PostCard = ({ post }: PostCardProps) => {
-
-
   return (
-    <li className="border-b border-gray-200 rounded-lg hover:bg-fuchsia-100 hover:scale-105 transition-all">
-      <Link href={`/posts/${post.id}`}>
-        <text className="block p-4">
+    <li className="rounded-lg border-b border-gray-200 py-3 transition-all">
+      <Link
+        className={buttonVariants({ variant: "link" })}
+        href={`/posts/${post.id}`}
+      >
+        <text>
           <h2 className="text-lg font-semibold">{post.title}</h2>
-          <p className="text-xs text-slate-600">
+          <p className="text-xs font-normal text-slate-600">
             {formatDate(post.createdAt)}
           </p>
         </text>

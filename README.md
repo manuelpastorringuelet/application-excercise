@@ -1,85 +1,94 @@
-Introduction:
--------------
+## 📌 Overview
 
-This exercise is designed to test your skills in building a simple blog application using TypeScript, Next.js, tRPC, Prisma, and Planetscale. The objective is to assess your ability to set up a project, work with various technologies, and implement basic CRUD operations.
+This guide details the steps to build a blog application, emphasizing project setup, technology integration, and basic CRUD operations. Live version [here](https://application-excercise-one.vercel.app/).
 
-Tech Stack:
------------
+## ⚗️ Tech Stack:
 
--   TypeScript
--   Next.js
--   tRPC
--   Prisma
--   Planetscale
+- TypeScript
+- Next.js
+- tRPC
+- Prisma
+- PlanetScale
 
-Setup Instructions:
--------------------
+## ⚙️ Setting Up
 
-1.  Fork the repository.
-2.  Install the required dependencies by running `npm install`.
-3.  setup a Database at planetscale.
-4.  Configure the database connection in the `.env` file with your Planetscale credentials.
-5.  Set up the Prisma schema for the blog post and migrate to the database.
-6.  Run `npx prisma studio` and pre-populate your DB with data.
-7.  Run the development server using `npm run dev`.
+### Step 1: Clone the Repository
 
-Task Details:
--------------
+First, clone the `application-excercise` repository to get the project onto your local machine:
 
-You will be building a basic blog application with the following features:
+```sh
+git clone https://github.com/manuelpastorringuelet/application-excercise
+cd application-excercise
+```
 
-1.  Homepage:
+1. **Create a Database**:
 
-    -   Display a list of all blog posts with their titles and creation dates.
-    -   Clicking on a blog post should navigate to its detail page.
-2.  Blog Post Detail Page:
+   - Sign up or log in to [PlanetScale](https://planetscale.com/).
+   - Create a new database. Take note of the connection details provided after creation.
 
-    -   Display the full content of the selected blog post.
-3. BONUS EXCERCISE Create Blog Post Page:
-    -   Provide a form to allow users to create a new blog post.
-    -   Implement client-side form validation to ensure the title and content are not empty. (extend the validation to your liking)
-    -   Implemnt Toast messsages.
-    -   Extract your queries and mutations into custom hooks.
-4.  Backend API:
+2. **Configure Your Application**:
+   - In the root directory of your cloned project, locate or create a `.env` file.
+   - Add your PlanetScale database credentials in the `.env` file as follows:
+     ```env
+     DATABASE_URL="your_planetscale_database_connection_string"
+     ```
+   - Replace `"your_planetscale_database_connection_string"` with the actual connection string provided by PlanetScale.
 
-    -   Use tRPC to create the API endpoints for fetching all blog posts and fetching a single blog post by its ID.
+### Step 3: Install Dependencies
 
-Implementation Guidelines:
---------------------------
+Install the project dependencies using your preferred package manager. Here are the commands for common package managers:
 
-1.  Project Structure:
+```bash
+# Using pnpm
+pnpm install
 
-    -   Follow a clean and organized project structure.
-    -   Separate components, pages, and services for better code readability.
-2.  TypeScript:
+# Using bun
+bun install
 
-    -   Utilize TypeScript types for improved code safety and documentation.
-    -   Use interfaces and types for API responses and data models.
-3.  Next.js:
+# Using npm
+npm install
 
-    -   Utilize server-side rendering (SSR) and static site generation (SSG) where appropriate.
-    -   Use Next.js features such as dynamic routing.
-4.  Prisma:
+# Using yarn
+yarn install
+```
 
-    -   Define the "BlogPost" model in the Prisma schema with appropriate fields.
-    -   Use Prisma to interact with the database and implement CRUD operations.
-5.  Planetscale:
+### Step 4: Start Development Server
 
-    -   Set up the database connection and credentials in the `.env` file.
-    -   Use Planetscale to deploy and manage the application data.
+Once the dependencies are installed, start the development server using the corresponding command for your package manager:
 
-Submission Guidelines:
-----------------------
+```bash
+# Using pnpm
+pnpm dev
 
-1.  Commit your code to a GitHub repository.
-2.  Include a detailed README with instructions on how to set up and run the application.
-3.  Provide comments and documentation for important functions and components.
-4.  Submit the GitHub repository URL along with your completed exercise.
+# Using bun
+bun dev
 
-Additional Notes:
------------------
+# Using npm
+npm run dev
 
-Feel free to reach out if you have any questions or need clarification on the exercise. We're looking forward to seeing your implementation!
-Also feel free to use any kind of library outside the given ones that you prefer. 
+# Using yarn
+yarn dev
+```
 
-Good luck and happy coding!
+Navigate to [http://localhost:3000](http://localhost:3000) in your web browser to view the application.
+
+## Application Features
+
+- **Homepage**: Lists all blog posts with titles and dates. Clicking on a post redirects to the post detail page.
+- **Blog Post Detail Page**: Displays the full content of a blog post. Contains a button to delete the post and a button to go back to the homepage.
+- **Create Blog Post Page**: Form for new posts with Zod validation.
+
+## UI Components
+
+Utilizes custom components (`Layout.tsx`, `Navbar.tsx`, `Footer.tsx`, `BlogPostCard.tsx`) alongside elements from the Shadcn library for a consistent design approach.
+
+## Utilities and Packages
+
+- `faker-js`: Generates dummy data.
+- `dateformat`: Ensures consistent date presentation across the application.
+
+## Backend Services
+
+- Powered by tRPC for API endpoints.
+- Utilizes Prisma for database interactions.
+- PlanetScale serves as the database provider.
